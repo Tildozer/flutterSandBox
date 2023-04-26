@@ -1,32 +1,49 @@
 import 'package:flutter/material.dart';
+import 'firstPage.dart' as first_page;
 
 void main() {
-  runApp( const SandBox() );
+  runApp(const App());
 }
 
-class SandBox extends StatefulWidget {
+class SandBox extends StatelessWidget {
   const SandBox({super.key});
 
   @override
-  State<SandBox> createState() => _SandBoxState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: "Test zone",
+      home: App(),
+    );
+  }
 }
 
-class _SandBoxState extends State<SandBox>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+class App extends StatefulWidget {
+  const App({super.key});
 
   @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
+  State<App> createState() => _AppState();
+}
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+class _AppState extends State<App> {
+    int _selectedIndex = 0;
+    static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    first_page.MainPage(),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+  ];
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,10 +53,22 @@ class _SandBoxState extends State<SandBox>
           foregroundColor: Colors.black,
           title: const Text("this is all for practice!"),
         ),
-        body: Container(
-          margin: const EdgeInsets.only(top: 10),
-          child: const Text("here is my first link to a new"),
-          ),
+        body: _widgetOptions.elementAt(_selectedIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                label: "1",
+                icon: Icon(
+                  Icons.abc,
+                  color: Colors.blue,
+                )),
+            BottomNavigationBarItem(icon: Icon(Icons.face), label: "2"),
+            BottomNavigationBarItem(icon: Icon(Icons.donut_small), label: "3"),
+          ],
+          currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
+        ),
       ),
     );
   }
