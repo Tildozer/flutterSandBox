@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'firstPage.dart' as first_page;
+import 'first_page.dart' as first_page;
+import 'second_page.dart' as second_page;
 
 void main() {
   runApp(const App());
@@ -30,10 +31,7 @@ class _AppState extends State<App> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     first_page.MainPage(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    second_page.SecondPage(),
     Text(
       'Index 2: School',
       style: optionStyle,
