@@ -5,7 +5,8 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SingleChildScrollView(
+      child: Column(
       children: [
         Center(
           child: Container(
@@ -23,6 +24,7 @@ class MainPage extends StatelessWidget {
           ),
         ),
       ],
+    )
     );
   }
 }
