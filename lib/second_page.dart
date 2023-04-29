@@ -52,11 +52,19 @@ class SecondPage extends StatelessWidget {
         children: [
           horizontal_scroll.Hori(enteries: enteries),
           reverse_scroll.ReverseScroll(enteries: reverseEntries),
-          Container(
-            height: 200,
-            color: Colors.grey.shade500,
-            child: const Text("data"),
-          )
+          Row(
+            children: [
+              Container(
+                height: 200,
+                color: Colors.grey.shade500,
+                child: const Text("data"),
+              ),
+              const SizedBox(
+                height: 100,
+                child: Icon(Icons.dynamic_feed),
+              ),
+            ],
+          ),
         ],
       ),
     );
